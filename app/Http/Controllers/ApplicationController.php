@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreApplicationRequest;
 use App\Http\Requests\UpdateApplicationRequest;
 use App\Http\Resources\ApplicationResource;
+use App\Http\Resources\GigResource;
 use App\Models\Application;
 use App\Models\Gig;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
@@ -46,6 +48,24 @@ class ApplicationController extends Controller
 
         $gigs = Application::where('student_id', $student)->get();
 
+        // foreach ($gigs as $gig) {
+        //     // if ($gig->posted_by) {
+        //     $gig->gig_det = Gig::where('id', $gig->id)->first();
+        //     // $gig->owner = User::where('id', $gig->gig_det->posted_by)->first();
+        //     $gig->owner = $gig->gig_det;
+        //     // }
+        // }
+
+        // foreach ($gigs as $gig) {
+        //     // if ($gig->posted_by) {
+        //     // $gig->gig_det = Gig::where('id', $gig->id)->first();
+        //     // $gig->owner = User::where('id', $gig->gig_det->posted_by)->first();
+        //     // }
+        //     // $dsgig = Gig::where('id', $gig->id)->first();
+        //     // $gig->gig_det = new GigResource($dsgig);
+        // }
+
+        // dd($gigs);
         return ApplicationResource::collection($gigs);
     }
 

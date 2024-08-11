@@ -22,4 +22,10 @@ class Application extends Model
     {
         return $this->belongsTo(User::class, 'student_id');
     }
+
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'posted_by');
+    }
 }

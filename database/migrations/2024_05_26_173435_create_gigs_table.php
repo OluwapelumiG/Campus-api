@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('location');
             $table->string('category');
+            $table->decimal('price', 10, 2);
             $table->foreignId('posted_by')->constrained('users')->onDelete('cascade');
             $table->foreignId('student')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreGigRequest extends FormRequest
+class StoreMessageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,11 @@ class StoreGigRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'location' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-            'posted_by' => 'required|integer|exists:users,id',
-            'student' => 'nullable',
-            'price' => 'nullable'
+            'from' => 'required|exists:users,id',
+            'user_id' => 'required|exists:users,id',
+            'message' => 'required|string',
+            'read' => 'nullable|boolean',
+            'replying' => 'nullable|exists:messages,id',
         ];
     }
 }

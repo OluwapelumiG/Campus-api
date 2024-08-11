@@ -24,6 +24,7 @@ class UserController extends Controller
         $user = User::create($request->validated());
 
         return UserResource::make($user);
+        // return response()->json(['user' => $user]);
     }
 
     public function show(User $user)
@@ -45,7 +46,11 @@ class UserController extends Controller
         $user = User::where('email', $request['email'])->firstOrFail();
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json(['access_token' => $token, 'token_type' => 'Bearer']);
+        $user->access_token = $token;
+        $user->token_type = 'Bearer';
+
+        // return UserResource::make($user);
+        return response()->json(['access_token' => $token, 'token_type' => 'Bearer', 'user' => $user->id]);
     }
 
     public function update(UpdateUserRequest $request, User $user)

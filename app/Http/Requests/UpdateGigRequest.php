@@ -28,6 +28,7 @@ class UpdateGigRequest extends FormRequest
             'category' => 'nullable|string|max:255',
             'posted_by' => 'nullable|integer|exists:users,id',
             'student' => 'nullable|integer|exists:users,id',
+            'price' => 'nullable'
         ];
     }
 }
